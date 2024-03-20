@@ -1,0 +1,14 @@
+- You can say `k logs <pod_name> --previous` to get logs of the previous pod
+- `k config set-context --current --namespace=beta`
+- You try to edit a pod, you're editing a field that you are not allowed to on a pod. 
+  - You quit the VI editor, and it saves the config to a file in /tmp (You'll see that in the output)
+  - Run `k replace --force -f  /tmp/<filena`
+  - You will not be ssh'd onto the controlplane. Make a note of what host you are currently logged onto
+  - You can find most config values in the `systemctl status kubelet` output for the kubelet service
+- If an app is unreachable:
+  - Check the pod status
+  - Check service endpoints, if they exist, then its not a CNI problem
+  - Check 
+
+- `k api-resources` will give you all the resources in the cluster and run `k api-resources --namespaced=true` to only get namespaced resources
+- By default the kubelet looks into `/etc/cni/net.d` to discover the CNI plugins

@@ -1,0 +1,8 @@
+- PV : PVC is a 1:1 ratio
+- You can explicitly set PVC to match to PVs or use selectors to use labels
+- Within a PV config, you have a `persistentVolumeClaimReclaimPolicy` which decides whether you want to Retain (not deleted, but unavailable) the underlying PV, delete it or Recycle (delete data and make available again) it if a PVC is deleted
+- Add the persistenVolumeClaim to the pod definition `spec.volumes[]` section to bind the PV to the Pod
+- If you dont add a selector to the PVC, it matches to a PV based on `capacity and accessModes`
+- If you delete a PVC, but it is attached to a pod, it will be stuch in the `Terminating` stage until you delete the pod
+- StaticProvisioning, means the underlying disk on the cloud provider needs to be created before the PV using it is created
+- DynamicProvisioning is when a `StorageClass` is used to automatically create the underlying disk on the cloud provider. The storageclass is referenced in the PV definition
